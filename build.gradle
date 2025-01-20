@@ -27,6 +27,15 @@ dependencies {
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// JUnit 5
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+
+	// Mockito
+	testImplementation 'org.mockito:mockito-core:5.5.0'
+
+	// Mockito JUnit 5 확장 기능
+	testImplementation 'org.mockito:mockito-junit-jupiter:5.5.0'
 }
 
 tasks.named('test') {

@@ -20,6 +20,11 @@ public class ItemForm {
         this.imageFiles = imageFiles;
     }
 
+    public ItemForm(final String itemName, final List<MultipartFile> imageFiles) {
+        this.itemName = itemName;
+        this.imageFiles = imageFiles;
+    }
+
     public Long getItemId() {
         return itemId;
     }
