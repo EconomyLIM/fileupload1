@@ -13,14 +13,17 @@ import java.util.UUID;
 @Component
 public class FileStore {
 
-    @Value("${file.dir}")
-    private String fileDir;
+    private final String fileDir;
+
+    public FileStore(@Value("${file.dir}") final String fileDir) {
+        this.fileDir = fileDir;
+    }
 
     public String getFullPath(String fileName) {
         return fileDir + fileName;
     }
 
-    public List<UploadFile> storeFiles(List<MultipartFile> multipartFiles) {
+    public List<UploadFile> storeFiles(final List<MultipartFile> multipartFiles) {
         List<UploadFile> uploadFiles = new ArrayList<>();
         for (MultipartFile file : multipartFiles) {
             if (file.isEmpty()) {
@@ -33,7 +36,7 @@ public class FileStore {
         return uploadFiles;
     }
 
-    public UploadFile storeFile(MultipartFile file) {
+    public UploadFile storeFile(final MultipartFile file) {
         if (file.isEmpty()) {
             return null;
         }
