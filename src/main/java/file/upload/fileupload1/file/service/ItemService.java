@@ -2,8 +2,11 @@ package file.upload.fileupload1.file.service;
 
 import file.upload.fileupload1.file.controller.dto.ItemForm;
 import file.upload.fileupload1.file.domain.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.net.MalformedURLException;
 import java.util.List;
@@ -18,6 +21,7 @@ public class ItemService {
     private final ItemRepository itemRepository;
     private final FileStore fileStore;
     private final UploadFileRepository uploadFileRepository;
+    private static final Logger log = LoggerFactory.getLogger(ItemService.class);
 
     public ItemService(final ItemRepository itemRepository, final FileStore fileStore, final UploadFileRepository uploadFileRepository) {
         this.itemRepository = itemRepository;
@@ -25,6 +29,7 @@ public class ItemService {
         this.uploadFileRepository = uploadFileRepository;
     }
 
+    @Transactional
     public Long saveItem(ItemForm form){
         List<UploadFile> storeImageFiles = fileStore.storeFiles(form.getImageFiles());
 
@@ -60,10 +65,8 @@ public class ItemService {
         try {
             return new UrlResource("file:" + getFullPath(filename));
         } catch (MalformedURLException e) {
+            log.error(e.getMessage());
             throw new RuntimeException(e);
         }
     }
-
-
-
 }
