@@ -1,21 +1,32 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <title>상품 조회</title>
+    <!-- Tailwind CSS CDN (Tailwind 3) -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-
-<div class="container">
-
-    <div class="py-5 text-center">
-        <h2>상품 조회</h2>
+<body class="bg-gray-100">
+<div class="container mx-auto px-4 py-8">
+    <div class="mb-8 text-center">
+        <h2 class="text-3xl font-bold text-gray-800">상품 조회</h2>
     </div>
-    상품명: <span th:text="${item.itemName}">상품명</span><br/>
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <!-- 상품명 정보 -->
+        <div class="mb-4">
+            <span class="text-lg font-medium text-gray-700">상품명: </span>
+            <span class="text-lg text-gray-900" th:text="${item.itemName}">상품명</span>
+        </div>
 
-    <br/>
-
-    <img th:each="imageFile : ${fileList}" th:src="|/images/${imageFile.getStoreFileName()}|" width="300" height="300"/>
-
-</div> <!-- /container -->
+        <!-- 이미지 리스트 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <img
+                    th:each="imageFile : ${fileList}"
+                    th:src="|/images/${imageFile.getStoreFileName()}|"
+                    alt="상품 이미지"
+                    class="w-full h-64 object-cover rounded-lg shadow-md"/>
+        </div>
+    </div>
+</div>
 </body>
 </html>
