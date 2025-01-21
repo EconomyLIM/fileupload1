@@ -7,7 +7,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(Fileupload1Application.class);
+		return application.sources(Fileupload2Application.class);
 	}
 
 }

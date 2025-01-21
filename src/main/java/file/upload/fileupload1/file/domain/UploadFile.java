@@ -44,4 +44,6 @@ public class UploadFile {
     public String getStoreFileName() {
         return storeFileName;
     }
+
+
 }

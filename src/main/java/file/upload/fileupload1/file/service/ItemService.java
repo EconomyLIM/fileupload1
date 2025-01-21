@@ -1,6 +1,7 @@
 package file.upload.fileupload1.file.service;
 
 import file.upload.fileupload1.file.controller.dto.ItemForm;
+import file.upload.fileupload1.file.controller.dto.response.ItemSaveResponse;
 import file.upload.fileupload1.file.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +31,7 @@ public class ItemService {
     }
 
     @Transactional
-    public Long saveItem(ItemForm form){
+    public ItemSaveResponse saveItem(ItemForm form){
         List<UploadFile> storeImageFiles = fileStore.storeFiles(form.getImageFiles());
 
         // 데이터 베이스 저장
@@ -41,7 +42,7 @@ public class ItemService {
             settingItem(storeImageFile, item);
             uploadFileRepository.save(storeImageFile);
         }
-        return item.getId();
+        return new ItemSaveResponse(item.getId());
     }
 
     private static void settingItem(final UploadFile attachFile, final Item item) {

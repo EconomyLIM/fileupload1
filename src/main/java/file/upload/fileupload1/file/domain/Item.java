@@ -28,4 +28,12 @@ public class Item {
     public String getItemName() {
         return itemName;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", itemName='" + itemName + '\'' +
+                '}';
+    }
 }

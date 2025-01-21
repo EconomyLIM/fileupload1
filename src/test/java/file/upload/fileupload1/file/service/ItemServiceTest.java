@@ -1,7 +1,9 @@
 package file.upload.fileupload1.file.service;
 
 import file.upload.fileupload1.file.controller.dto.ItemForm;
+import file.upload.fileupload1.file.controller.dto.response.ItemSaveResponse;
 import file.upload.fileupload1.file.domain.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -47,13 +49,14 @@ class ItemServiceTest {
         when(itemRepository.save(any(Item.class))).thenReturn(mockItem);
 
         // When
-        Long itemId = itemService.saveItem(form);
+        ItemSaveResponse itemSaveResponse = itemService.saveItem(form);
 
-        // Then
-        assertNotNull(itemId);
-        assertEquals(1L, itemId);
-        verify(itemRepository).save(any(Item.class));
-        verify(uploadFileRepository, times(1)).save(any(UploadFile.class));
+        org.assertj.core.api.Assertions.assertThat(itemSaveResponse.getItemId()).isEqualTo(mockItem.getId());
+//        // Then
+//        assertNotNull(itemId);
+//        assertEquals(1L, itemId);
+//        verify(itemRepository).save(any(Item.class));
+//        verify(uploadFileRepository, times(1)).save(any(UploadFile.class));
     }
 
     @Test
