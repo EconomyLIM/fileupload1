@@ -1,5 +1,5 @@
 # 파일 업로드 예제
-**Spring Boot**를 활용한 파일 업로드 예제입니다.
+**Spring Boot**를 활용한 파일 업로드 예제
 <br/>
 
 ![img_1.png](img_1.png)
